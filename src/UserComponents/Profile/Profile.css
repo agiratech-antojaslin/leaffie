@@ -1,0 +1,14 @@
+.leaffie-profile .leaffie-profile--title h3 {
+    color: #004832;
+    font-family: "Oswald", sans-serif;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.leaffie-profile .leaffie-profile--content {
+    min-height: 58vh;
+}
+.leaffie-profile .leaffie-profile_left h5,
+.leaffie-profile .leaffie-profile_right h5 {
+    font-family: "Oswald", sans-serif;
+    color: grey;
+}

@@ -1,0 +1,38 @@
+.leaffie-login {
+  background-color: #dbe4e0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leaffie-login_content {
+  width: 70%;
+  background-color: #fff;
+  height: 70vh;
+  border-radius: 10px;
+}
+.leaffie-login_content .leaffie-login_content--title {
+  text-align: center;
+  margin-top: 20px;
+  font-family: "Oswald", sans-serif;
+  color: #004832;
+}
+.leaffie-login_content .row,
+.leaffie-login_content .row .col-6 {
+  height: 100%;
+}
+.leaffie-login_content .row .col-6 img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.leaffie-login_content .row .col-6 a {
+  color: #004832;
+}
+.leaffie-login_content .row .col-6 .btn.btn-login {
+  background-color: #004832;
+  padding: 15px 45px 15px 45px;
+  color: #fff;
+}

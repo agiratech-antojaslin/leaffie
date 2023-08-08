@@ -1,0 +1,36 @@
+.leaffie-footer {
+  margin-top: 6rem;
+  background-color: #dbe4e0;
+}
+.leaffie-footer_content--top {
+  border-bottom: 1px solid #004832;
+}
+.leaffie-footer_content--top a {
+  color: #004832;
+  text-decoration: none;
+}
+.leaffie-footer_content--top form input {
+  width: 50%;
+  padding: 0.8rem 1rem;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.leaffie-footer_content--top form button {
+  background-color: #004832;
+  padding: 15px 45px 15px 45px;
+  color: #fff;
+}
+.leaffie-footer_content--img img {
+  height: 100px;
+}
+.leaffie-footer_content--bottom {
+  margin-top: 20px !important;
+  padding-bottom: 30px;
+}
+.leaffie-footer_content--bottom .fa {
+  font-size: 40px;
+  color: #004832;
+}
+.leaffie-footer_content--bottom .fa:not(:last-child) {
+  margin-right: 20px;
+}

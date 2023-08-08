@@ -1,0 +1,304 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap");
+
+.leaffie-navbar .navbar-nav li a {
+  color: #004832;
+}
+.leaffie-navbar .btn-call {
+  background-color: #004832;
+  padding: 15px 45px 15px 45px;
+  color: #fff;
+}
+.leaffie-navbar .btn-call:hover {
+  border: 1px solid #004832;
+  background-color: #fff;
+  color: #004832;
+}
+.leaffie-navbar .btn-signup {
+  border: 1px solid #004832;
+  padding: 15px 45px 15px 45px;
+  color: #004832;
+  margin-left: 10px;
+}
+.leaffie-navbar .btn-signup:hover {
+  background-color: #004832;
+  color: #fff;
+}
+.leaffie-navbar .navbar-brand img {
+  height: 100px;
+}
+
+/* Leaffie Header */
+
+.leaffie-header {
+  background-color: #dbe4e0;
+  /* background: url(../images/header-leaf-3-removebg-preview.jpg) center no-repeat;
+    background: center / contain no-repeat url("../images/header-leaf-3-removebg-preview.jpg");
+    height: 100%; */
+}
+.leaffie-header .leaffie-header_content .leaffie-header_content--left {
+  color: #004832;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.leaffie-header .leaffie-header_content .leaffie-header_content--left h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 4rem;
+  padding-right: 100px;
+  margin-bottom: 1.2rem;
+}
+
+/* Leaffie About Us */
+
+.leaffie-about-us {
+  margin-top: 6rem;
+}
+.leaffie-about-us h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  color: #004832;
+}
+.leaffie-about-us .leaffie-about-us_content--left img {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+.leaffie-about-us .leaffie-about-us_content--right .about-box {
+  font-family: "Oswald", sans-serif;
+  color: #004832;
+  background-color: #dbe4e0;
+  padding: 35px;
+  border-radius: 10px;
+}
+.leaffie-about-us .leaffie-about-us_content--right .about-box .fa {
+  font-size: 50px;
+  margin-right: 20px;
+}
+.leaffie-about-us_content {
+  margin-top: 3rem;
+}
+.leaffie-about-us .leaffie-about-us_content--right .about-desc {
+  background-color: #004832;
+  color: #fff;
+  border-radius: 10px;
+  padding: 35px;
+}
+.leaffie-about-us .leaffie-about-us_content--right .about-desc h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 3rem;
+  text-align: center;
+  color: #fff;
+}
+
+/* Leaffie Our Team */
+
+.leaffie-our-team {
+  margin-top: 6rem;
+}
+.leaffie-our-team h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  color: #004832;
+}
+.leaffie-our-team_content {
+  margin-top: 3rem;
+}
+.leaffie-our-team_content img {
+  height: 550px;
+  border-radius: 10px;
+  width: 100%;
+}
+.leaffie-our-team_content .col-4 {
+  position: relative;
+}
+.leaffie-our-team_content h5 {
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+  position: absolute;
+  bottom: 20px;
+  margin-left: 20px;
+  color: #fff;
+}
+
+/* Leaffie Contact Us */
+
+.leaffie-products {
+  margin-top: 6rem;
+}
+.leaffie-contact-us h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  color: #004832;
+}
+.leaffie-contact-us_content {
+  margin-top: 3rem;
+}
+.leaffie-contact-us_content p {
+  text-align: center;
+  color: #004832;
+}
+.leaffie-contact-us_content form .btn-send {
+  background-color: #004832;
+  padding: 15px 45px 15px 45px;
+  color: #fff;
+}
+
+/* Leaffie Products */
+
+.leaffie-products {
+  margin-top: 6rem;
+}
+.leaffie-products h2 {
+  font-family: "Oswald", sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  color: #004832;
+}
+.leaffie-products_content {
+  margin-top: 3rem;
+}
+.leaffie-products_content .card-product img {
+  border-radius: calc(0.375rem - (1px)) !important;
+  height: 300px;
+}
+.leaffie-products_content .card-product .btn {
+  background-color: #004832;
+  border: 1px solid #004832;
+}
+.leaffie-products_content .card-product .card-img {
+  position: relative;
+}
+.leaffie-products_content .card-product .card-img-icons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: absolute;
+  padding: 10px;
+}
+.leaffie-products_content .card-product .card-img i {
+  font-size: 26px;
+  color: #fff;
+}
+
+/* Leaffie Footer */
+
+.leaffie-footer {
+  margin-top: 6rem;
+  background-color: #dbe4e0;
+}
+.leaffie-footer_content--top {
+  border-bottom: 1px solid #004832;
+}
+.leaffie-footer_content--top a {
+  color: #004832;
+  text-decoration: none;
+}
+.leaffie-footer_content--top form input {
+  width: 50%;
+  padding: 0.8rem 1rem;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.leaffie-footer_content--top form button {
+  background-color: #004832;
+  padding: 15px 45px 15px 45px;
+  color: #fff;
+}
+.leaffie-footer_content--img img {
+  height: 100px;
+}
+.leaffie-footer_content--bottom {
+  margin-top: 20px !important;
+  padding-bottom: 30px;
+}
+.leaffie-footer_content--bottom .fa {
+  font-size: 40px;
+  color: #004832;
+}
+.leaffie-footer_content--bottom .fa:not(:last-child) {
+  margin-right: 20px;
+}
+
+/* Leaffie Register */
+
+.leaffie-register {
+  background-color: #dbe4e0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leaffie-register_content {
+  width: 70%;
+  background-color: #fff;
+  height: 70vh;
+  border-radius: 10px;
+}
+.leaffie-register_content .leaffie-register_content--title {
+  text-align: center;
+  margin-top: 20px;
+  font-family: "Oswald", sans-serif;
+  color: #004832;
+}
+.leaffie-register_content .row,
+.leaffie-register_content .row .col-6 {
+  height: 100%;
+}
+.leaffie-register_content .row .col-6 img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.leaffie-register_content .row .col-6 a {
+  color: #004832;
+}
+.leaffie-register_content .row .col-6 .btn.btn-register {
+  background-color: #004832;
+  padding: 15px 45px 15px 45px;
+  color: #fff;
+}
+
+/* Leaffie Login */
+
+.leaffie-login {
+  background-color: #dbe4e0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leaffie-login_content {
+  width: 70%;
+  background-color: #fff;
+  height: 70vh;
+  border-radius: 10px;
+}
+.leaffie-login_content .leaffie-login_content--title {
+  text-align: center;
+  margin-top: 20px;
+  font-family: "Oswald", sans-serif;
+  color: #004832;
+}
+.leaffie-login_content .row,
+.leaffie-login_content .row .col-6 {
+  height: 100%;
+}
+.leaffie-login_content .row .col-6 img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.leaffie-login_content .row .col-6 a {
+  color: #004832;
+}
+.leaffie-login_content .row .col-6 .btn.btn-login {
+  background-color: #004832;
+  padding: 15px 45px 15px 45px;
+  color: #fff;
+}

@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap");
+
+.leaffie-product-details .leaffie-product-details_right h3 {
+    color: #004832;
+    font-family: "Oswald", sans-serif;
+}
+
+.leaffie-product-details .leaffie-product-details_right p {
+    color: #004832;
+}
+
+.leaffie-product-details .leaffie-product-details_right .btn-cart {
+    background-color: #004832;
+    padding: 15px 45px 15px 45px;
+    color: #fff;
+}
+
+.leaffie-product-details .leaffie-product-details_right .btn-cart-remove {
+    background-color: grey;
+    padding: 15px 45px 15px 45px;
+    color: #fff;
+}
+
+.leaffie-product-details .leaffie-product-details_right input {
+    margin-right: 20px;
+}

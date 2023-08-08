@@ -1,0 +1,28 @@
+.leaffie-products .leaffie-products_categories .nav-link.active {
+  background-color: #004832;
+  color: #fff;
+}
+.leaffie-products .leaffie-products_categories .nav-link {
+  color: #004832;
+}
+.leaffie-products .leaffie-products_list .card-product {
+  margin-bottom: 20px;
+}
+.leaffie-products .leaffie-products_list .card-product .btn {
+  background-color: #004832;
+  border: 1px solid #004832;
+}
+.leaffie-products .leaffie-products_list .card-product .card-img {
+  position: relative;
+}
+.leaffie-products .leaffie-products_list .card-product .card-img-icons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: absolute;
+  padding: 10px;
+}
+.leaffie-products .leaffie-products_list .card-product .card-img i {
+  font-size: 26px;
+  color: #fff;
+}

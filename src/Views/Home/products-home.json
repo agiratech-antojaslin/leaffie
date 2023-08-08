@@ -1,0 +1,38 @@
+{
+    "isError": false,
+    "code": 200,
+    "payload": [
+        {
+            "id": 1,
+            "name": "Jade Plant Mini",
+            "description": "Are you a sucker for succulents? The Crassula Green Mini will be your dream plant kid.",
+            "image": "https://www.ugaoo.com/cdn/shop/products/GroPot_87e3e981-500e-4df2-bff3-d618431f96c9.jpg?v=1680418283&width=750",
+            "price": 122,
+            "qty": 0
+        },
+        {
+            "id": 2,
+            "name": "Bamboo Palm Plant",
+            "description": "Its lush green foliage swaying daintily in the breeze is sure to remind you of tropical resorts.",
+            "image": "https://www.ugaoo.com/cdn/shop/products/GroPot_cff1f8cf-e233-4cbf-9cfa-8ef815e851dd.jpg?v=1680305362&width=750",
+            "price": 122,
+            "qty": 0
+        },
+        {
+            "id": 3,
+            "name": "Broken Heart Plant",
+            "description": "One of the most popular houseplants, and our all-time bestseller, this easy-growing plant with its heart-shaped leaves is loved for its beautiful fenestrations.",
+            "image": "https://www.ugaoo.com/cdn/shop/files/small-gropot-ivory-broken-heart-plant-32953867468932.jpg?v=1689663720&width=750",
+            "price": 122,
+            "qty": 0
+        },
+        {
+            "id": 2,
+            "name": "Money Plant Golden",
+            "description": "One of the most popular houseplants, and our all-time bestseller, this easy-growing plant with its heart-shaped leaves is loved for its beautiful fenestrations.",
+            "image": "https://www.ugaoo.com/cdn/shop/files/small-gropot-ivory-broken-heart-plant-32953867468932.jpg?v=1689663720&width=750",
+            "price": 122,
+            "qty": 0
+        }
+    ]
+}

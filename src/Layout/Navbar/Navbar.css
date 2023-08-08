@@ -1,0 +1,54 @@
+.leaffie-navbar .navbar-nav li a {
+  color: #004832;
+}
+.leaffie-navbar .btn-call {
+  background-color: #004832;
+  padding: 15px 45px 15px 45px;
+  color: #fff;
+}
+.leaffie-navbar .btn-call:hover {
+  border: 1px solid #004832;
+  background-color: #fff;
+  color: #004832;
+}
+.leaffie-navbar .btn-signup {
+  border: 1px solid #004832;
+  padding: 15px 45px 15px 45px;
+  color: #004832;
+  margin-left: 10px;
+}
+.leaffie-navbar .btn-signup:hover {
+  background-color: #004832;
+  color: #fff;
+}
+.leaffie-navbar .navbar-brand img {
+  height: 100px;
+}
+.leaffie-navbar .profile {
+  text-decoration: none;
+  font-size: 30px;
+  color: grey;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.leaffie-navbar .cart {
+  text-decoration: none;
+  font-size: 30px;
+  color: grey;
+  position: relative;
+}
+.leaffie-navbar .cart .badge {
+  font-size: 14px;
+  border-radius: 50%;
+  background-color: #004832;
+  position: absolute;
+  top: -2px;
+  right: -14px;
+}
+.leaffie-navbar .logout {
+  font-size: 30px;
+  color: grey;
+  position: relative;
+  margin-left: 30px;
+  cursor: pointer;
+}
