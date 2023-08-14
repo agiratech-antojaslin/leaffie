@@ -1,12 +1,12 @@
-import { ADD_CART, GET_CART, REMOVE_CART } from "./constants";
+import { ADD_CART, CLEAR_CART, GET_CART, REMOVE_CART } from "./constants";
 
 let cartItems = JSON.parse(localStorage.getItem("myCart"));
 let cartCount = 0;
 let cartTotal = 0;
 if (cartItems) {
   cartItems.forEach((element) => {
-    cartCount = cartCount + element.qty;
-    cartTotal = cartTotal + (element.price * element.qty);
+    cartCount = cartCount + element.quantity;
+    cartTotal = cartTotal + (element.price * element.quantity);
   });
 }
 const initialState = {
@@ -44,6 +44,16 @@ const UserReducer = (state = initialState, action) => {
           count: state.cart.count,
         },
       };
+
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: {
+          items: [],
+          count: 0,
+          total: 0
+        }
+      }
 
     default:
       return state;

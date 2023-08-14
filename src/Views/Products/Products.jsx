@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../Layout/Navbar/Navbar";
 import Footer from "../../Layout/Footer/Footer";
 import Plant1 from "../../assets/images/plant-1.avif";
@@ -12,46 +12,74 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ActionCreators } from "../../redux/actions";
 
-const baseURL = "https://64ce6ec30c01d81da3eed0a8.mockapi.io/api/products";
+//const baseURL = "https://64ce6ec30c01d81da3eed0a8.mockapi.io/api/products";
+const baseURL = "http://localhost:8000/api/product/getProductsByCategory/";
 
 export default function Products() {
   const [products, setProducts] = React.useState(null);
+  const [category, setCategory] = useState("64d1f7ad3664878d9b52911b");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showAddCart, setAddCart] = useState(false);
+  const [addProduct, setAddProduct] = useState("");
   const isAuthenticated = useSelector(
     (state) => state.AuthReducer.isAuthenticated
   );
 
   React.useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setProducts(response.data);
+    axios.get(baseURL + category).then((response) => {
+      setProducts(response.data.data);
     });
-  }, []);
+  }, [category]);
+
+  const changeCategory = (categoryID) => {
+    axios.get(baseURL + categoryID).then((response) => {
+      setProducts(response.data.data);
+    });
+  };
 
   const addToCart = (product) => {
     if (isAuthenticated) {
-      product.qty = 1;
+      product.quantity = 1;
       if (localStorage.getItem("myCart") != null) {
         let products = JSON.parse(localStorage.getItem("myCart"));
-        let inProduct = products.filter((cartProduct) => {
-          return product.id === cartProduct.id;
+        let inProduct = products.some((cartProduct) => {
+          return product._id === cartProduct._id;
         });
-        if (inProduct.length > 0) {
+        if (inProduct) {
           products.forEach((cartProduct) => {
-            if (product.id === cartProduct.id) {
-              cartProduct.qty++;
+            if (product._id === cartProduct._id) {
+              cartProduct.quantity++;
             }
           });
           localStorage.setItem("myCart", JSON.stringify(products));
-          dispatch(ActionCreators.addCart(products, product.qty, product.price * product.qty));
+          dispatch(
+            ActionCreators.addCart(
+              products,
+              product.quantity,
+              product.price * product.quantity
+            )
+          );
         } else {
-          products.push(product)
+          products.push(product);
           localStorage.setItem("myCart", JSON.stringify(products));
-          dispatch(ActionCreators.addCart(products, product.qty, product.price * product.qty));
+          dispatch(
+            ActionCreators.addCart(
+              products,
+              product.quantity,
+              product.price * product.quantity
+            )
+          );
         }
       } else {
         localStorage.setItem("myCart", JSON.stringify([product]));
-        dispatch(ActionCreators.addCart([product], product.qty, product.price * product.qty));
+        dispatch(
+          ActionCreators.addCart(
+            [product],
+            product.quantity,
+            product.price * product.quantity
+          )
+        );
       }
       navigate("/my-cart");
     } else {
@@ -59,28 +87,40 @@ export default function Products() {
     }
   };
 
-  if (!products) return null;
+  if (!products)
+    return (
+      <div>
+        <Navbar />
+        <div className="loader-container">
+          <div className="loader"></div>
+        </div>
+        <Footer />
+      </div>
+    );
   return (
     <div>
       <Navbar />
-      <div
-        className="toast"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-        <div className="toast-header">
-          <strong className="me-auto">Cart Item Added!</strong>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="toast"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div className="toast-body">Hello, world! This is a toast message.</div>
-      </div>
       <div className="container leaffie-products">
+        <div className="row">
+          <div className="col-3"></div>
+          <div className="col-9">
+            {showAddCart ? (
+              <div
+                className="alert alert-success alert-dismissible fade show mt-3"
+                role="alert"
+              >
+                <strong>{addProduct}</strong> Added to the cart!
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                  onClick={() => setAddCart(false)}
+                ></button>
+              </div>
+            ) : null}
+          </div>
+        </div>
         <div className="row my-3">
           <div className="col-3 leaffie-products_categories">
             <div
@@ -98,6 +138,7 @@ export default function Products() {
                 role="tab"
                 aria-controls="v-pills-home"
                 aria-selected="true"
+                onClick={() => setCategory("64d1f7ad3664878d9b52911b")}
               >
                 Flowering Plants
               </button>
@@ -105,37 +146,40 @@ export default function Products() {
                 className="nav-link"
                 id="v-pills-profile-tab"
                 data-bs-toggle="pill"
-                data-bs-target="#v-pills-profile"
+                data-bs-target="#v-pills-home"
                 type="button"
                 role="tab"
-                aria-controls="v-pills-profile"
+                aria-controls="v-pills-home"
                 aria-selected="false"
-              >
-                Gardening Plants
-              </button>
-              <button
-                className="nav-link"
-                id="v-pills-messages-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#v-pills-messages"
-                type="button"
-                role="tab"
-                aria-controls="v-pills-messages"
-                aria-selected="false"
+                onClick={() => setCategory("64d1f7e33664878d9b52911d")}
               >
                 Foliage Plants
               </button>
               <button
                 className="nav-link"
-                id="v-pills-settings-tab"
+                id="v-pills-messages-tab"
                 data-bs-toggle="pill"
-                data-bs-target="#v-pills-settings"
+                data-bs-target="#v-pills-home"
                 type="button"
                 role="tab"
-                aria-controls="v-pills-settings"
+                aria-controls="v-pills-home"
                 aria-selected="false"
+                onClick={() => setCategory("64d1fb0c3664878d9b52911f")}
               >
                 Trending Plants
+              </button>
+              <button
+                className="nav-link"
+                id="v-pills-settings-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-home"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-home"
+                aria-selected="false"
+                onClick={() => changeCategory("64d1fb2b3664878d9b529121")}
+              >
+                Herb Plants
               </button>
             </div>
           </div>
@@ -162,141 +206,23 @@ export default function Products() {
                               onClick={() => addToCart(product)}
                             ></i>
                           </div>
-                          <Link to={"/product-details/" + product.id}>
+                          <Link to={"/product-details/" + product._id}>
                             <img
                               className="card-img-top"
-                              src={Plant2}
+                              src={product.image}
                               alt="Card cap"
                             />
                           </Link>
                         </div>
                         <div className="card-body p-0">
-                          <h5 className="text-center my-1">{product.name}</h5>
+                          <h5 className="text-center my-1">
+                            {product.productName}
+                          </h5>
                           <p className="card-text text-center my-1">
                             {product.description}
                           </p>
                           <a href="/" className="btn btn-primary d-block">
-                            {product.price}$
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div
-                className="tab-pane fade leaffie-products_list"
-                id="v-pills-profile"
-                role="tabpanel"
-                aria-labelledby="v-pills-profile-tab"
-              >
-                <div className="row">
-                  {products.map((product) => (
-                    <div className="col-4">
-                      <div className="card p-3 card-product">
-                        <div className="card-img">
-                          <div className="card-img-icons">
-                            <i className="fa fa-heart-o cursor-pointer"></i>
-                            <i
-                              className="fa fa-shopping-cart cursor-pointer"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Add to cart"
-                            ></i>
-                          </div>
-                          <img
-                            className="card-img-top"
-                            src={Plant4}
-                            alt="Card cap"
-                          />
-                        </div>
-                        <div className="card-body p-0">
-                          <h5 className="text-center my-1">{product.name}</h5>
-                          <p className="card-text text-center my-1">
-                            {product.description}
-                          </p>
-                          <a href="/" className="btn btn-primary d-block">
-                            {product.price}$
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div
-                className="tab-pane fade leaffie-products_list"
-                id="v-pills-messages"
-                role="tabpanel"
-                aria-labelledby="v-pills-messages-tab"
-              >
-                <div className="row">
-                  {products.map((product) => (
-                    <div className="col-4">
-                      <div className="card p-3 card-product">
-                        <div className="card-img">
-                          <div className="card-img-icons">
-                            <i className="fa fa-heart-o cursor-pointer"></i>
-                            <i
-                              className="fa fa-shopping-cart cursor-pointer"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Add to cart"
-                            ></i>
-                          </div>
-                          <img
-                            className="card-img-top"
-                            src={Plant1}
-                            alt="Card cap"
-                          />
-                        </div>
-                        <div className="card-body p-0">
-                          <h5 className="text-center my-1">{product.name}</h5>
-                          <p className="card-text text-center my-1">
-                            {product.description}
-                          </p>
-                          <a href="/" className="btn btn-primary d-block">
-                            {product.price}$
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div
-                className="tab-pane fade leaffie-products_list"
-                id="v-pills-settings"
-                role="tabpanel"
-                aria-labelledby="v-pills-settings-tab"
-              >
-                <div className="row">
-                  {products.map((product) => (
-                    <div className="col-4">
-                      <div className="card p-3 card-product">
-                        <div className="card-img">
-                          <div className="card-img-icons">
-                            <i className="fa fa-heart-o cursor-pointer"></i>
-                            <i
-                              className="fa fa-shopping-cart cursor-pointer"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="top"
-                              title="Add to cart"
-                            ></i>
-                          </div>
-                          <img
-                            className="card-img-top"
-                            src={Plant3}
-                            alt="Card cap"
-                          />
-                        </div>
-                        <div className="card-body p-0">
-                          <h5 className="text-center my-1">{product.name}</h5>
-                          <p className="card-text text-center my-1">
-                            {product.description}
-                          </p>
-                          <a href="/" className="btn btn-primary d-block">
-                            {product.price}$
+                            &#8377; {product.price}
                           </a>
                         </div>
                       </div>

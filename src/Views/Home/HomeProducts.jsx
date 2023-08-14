@@ -6,17 +6,56 @@ import Plant4 from "../../assets/images/plant-4.jpg";
 import axios from "axios";
 import homeProducts from "../../localData/products-home.json";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { ActionCreators } from "../../redux/actions";
 
 // const baseURL = "https://64ce6ec30c01d81da3eed0a8.mockapi.io/api/products?page=1&limit=4";
 // const mockApi = "http://localhost:3000/products-home.json";
+const baseURL = "http://localhost:8000/api/product/getProductsByCategory/64d1fb0c3664878d9b52911f";
 export default function HomeProducts() {
   const [products, setProducts] = React.useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(
+    (state) => state.AuthReducer.isAuthenticated
+  );
   React.useEffect(() => {
-    axios.get("./products-home.json").then((response) => {
-      setProducts(response.data.payload);
+    axios.get(baseURL).then((response) => {
+      setProducts(response.data.data);
     });
   }, []);
+
+  const addToCart = (product) => {
+    if (isAuthenticated) {
+      product.quantity = 1;
+      if (localStorage.getItem("myCart") != null) {
+        let products = JSON.parse(localStorage.getItem("myCart"));
+        let inProduct = products.filter((cartProduct) => {
+          return product.id === cartProduct.id;
+        });
+        if (inProduct.length > 0) {
+          products.forEach((cartProduct) => {
+            if (product.id === cartProduct.id) {
+              cartProduct.qty++;
+            }
+          });
+          localStorage.setItem("myCart", JSON.stringify(products));
+          dispatch(ActionCreators.addCart(products, product.quantity, product.price * product.quantity));
+        } else {
+          products.push(product)
+          localStorage.setItem("myCart", JSON.stringify(products));
+          dispatch(ActionCreators.addCart(products, product.quantity, product.price * product.quantity));
+        }
+      } else {
+        localStorage.setItem("myCart", JSON.stringify([product]));
+        dispatch(ActionCreators.addCart([product], product.quantity, product.price * product.quantity));
+      }
+      navigate("/my-cart");
+    } else {
+      navigate("/login");
+    }
+  };
+
 
   if (!products) return null;
 
@@ -36,17 +75,18 @@ export default function HomeProducts() {
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Add to cart"
+                      onClick={() => addToCart(product)}
                     ></i>
                   </div>
-                  <Link to={"product-details/" + product.id}><img className="card-img-top" src={product.image} alt="Card cap" /></Link>
+                  <Link to={"product-details/" + product._id}><img className="card-img-top" src={product.image} alt="Card cap" /></Link>
                 </div>
                 <div className="card-body p-0">
-                  <h5 className="text-center my-1">{product.name}</h5>
-                  <p className="card-text text-center my-1">
+                  <h5 className="text-center my-1">{product.productName}</h5>
+                  <div className="card-text text-center my-1">
                     {product.description}
-                  </p>
+                  </div>
                   <a href="/" className="btn btn-primary d-block">
-                    {product.price}$
+                    &#8377; {product.price}
                   </a>
                 </div>
               </div>

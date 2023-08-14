@@ -158,3 +158,11 @@
 .cursor-pointer {
   cursor: pointer;
 }
+.leaffie-products_content .card-product .card-body h5 {
+  height: 50px;
+  overflow-y: hidden;
+}
+.leaffie-products_content .card-product .card-text {
+  height: 70px;
+  overflow-y: hidden;
+}

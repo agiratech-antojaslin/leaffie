@@ -16,6 +16,7 @@ export default function Header() {
   )
   const onLogout = () => {
     localStorage.clear();
+    dispatch(ActionCreators.clearCart({}));
     dispatch(
       ActionCreators.getLogout({})
     )

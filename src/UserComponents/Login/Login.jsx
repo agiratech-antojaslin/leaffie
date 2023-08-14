@@ -4,6 +4,9 @@ import login from "../../assets/images/login.jpg";
 import { ActionCreators } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+
+const baseURL = "http://localhost:8000/api/auth/login";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -25,49 +28,58 @@ export default function Login() {
   };
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      let users = JSON.parse(localStorage.getItem("users"));
-      if (users) {
-        users.forEach((user) => {
-          if (user.email === formValues.email) {
-            if (user.password === formValues.password) {
-              dispatch(ActionCreators.getLogin(user));
-              localStorage.setItem("loggedUser", JSON.stringify(user));
-              navigate("/profile");
-            } else {
-              setSubmitError(true);
-              setLoginError("Invalid Login Credentials!");
-            }
-          } else {
-            setSubmitError(true);
-            setLoginError("User Not Found!");
-          }
-        });
-      } else {
-        let defaultUser = {
-          username: "Admin",
-          email: "admin@gmail.com",
-          password: "Admin@123",
-          phone: "1234567890",
-          address: "address 1, address 2, city, pincode.",
-        };
-        localStorage.setItem("users", JSON.stringify([defaultUser]));
-        let users = JSON.parse(localStorage.getItem("users"));
-        users.forEach((user) => {
-          if (user.email === formValues.email) {
-            if (user.password === formValues.password) {
-              dispatch(ActionCreators.getLogin(user));
-              localStorage.setItem("loggedUser", JSON.stringify(user));
-              navigate("/profile");
-            } else {
-              setSubmitError(true);
-              setLoginError("Invalid Login Credentials!");
-            }
-          } else {
-            setSubmitError(true);
-            setLoginError("User Not Found!");
-          }
-        });
-      }
+      // let users = JSON.parse(localStorage.getItem("users"));
+      // if (users) {
+      //   users.forEach((user) => {
+      //     if (user.email === formValues.email) {
+      //       if (user.password === formValues.password) {
+      //         dispatch(ActionCreators.getLogin(user));
+      //         localStorage.setItem("loggedUser", JSON.stringify(user));
+      //         navigate("/profile");
+      //       } else {
+      //         setSubmitError(true);
+      //         setLoginError("Invalid Login Credentials!");
+      //       }
+      //     } else {
+      //       setSubmitError(true);
+      //       setLoginError("User Not Found!");
+      //     }
+      //   });
+      // } else {
+      //   let defaultUser = {
+      //     username: "Admin",
+      //     email: "admin@gmail.com",
+      //     password: "Admin@123",
+      //     phone: "1234567890",
+      //     address: "address 1, address 2, city, pincode.",
+      //   };
+      //   localStorage.setItem("users", JSON.stringify([defaultUser]));
+      //   let users = JSON.parse(localStorage.getItem("users"));
+      //   users.forEach((user) => {
+      //     if (user.email === formValues.email) {
+      //       if (user.password === formValues.password) {
+      //         dispatch(ActionCreators.getLogin(user));
+      //         localStorage.setItem("loggedUser", JSON.stringify(user));
+      //         navigate("/profile");
+      //       } else {
+      //         setSubmitError(true);
+      //         setLoginError("Invalid Login Credentials!");
+      //       }
+      //     } else {
+      //       setSubmitError(true);
+      //       setLoginError("User Not Found!");
+      //     }
+      //   });
+      // }
+      axios.post(baseURL, formValues).then((response) => {
+        if(response.data.code === 200) {
+          dispatch(ActionCreators.getLogin(response.data.data));
+          localStorage.setItem("loggedUser", JSON.stringify(response.data.data));
+          navigate("/profile");
+        } else {
+          setLoginError(response.data.message);
+        }
+      }) 
     }
   });
 

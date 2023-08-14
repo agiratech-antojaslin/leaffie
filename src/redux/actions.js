@@ -24,7 +24,7 @@ export const ActionCreators = {
 
   getLogin: (user) => ({ type: Constants.LOGIN_SUCCESS, payload: user  }),
 
-  getLogout: (image) => ({ type: Constants.LOGOUT_SUCCESS }),
+  getLogout: () => ({ type: Constants.LOGOUT_SUCCESS }),
 
   addUser: (user) => ({ type: Constants.ADD_USER, payload: user }),
 
@@ -33,5 +33,7 @@ export const ActionCreators = {
   removeCart: (product, count, total) => ({type: Constants.REMOVE_CART, payload: product, count: count, total: total}),
 
   getCart: (product) => ({type: Constants.GET_CART, payload: {product}}),
+
+  clearCart: () => ({type: Constants.CLEAR_CART})
 
 }

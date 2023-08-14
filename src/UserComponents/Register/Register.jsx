@@ -4,6 +4,9 @@ import register from "../../assets/images/register.jpg";
 import { ActionCreators } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+
+const baseURL = "http://localhost:8000/api/auth/register";
 
 export default function Register(props) {
   const dispatch = useDispatch();
@@ -38,14 +41,20 @@ export default function Register(props) {
       dispatch(
         ActionCreators.addUser(user)
       );
-      if(JSON.parse(localStorage.getItem("users")) != null) {
-        let users = JSON.parse(localStorage.getItem("users"))
-        users.push(user);
-        localStorage.setItem("users", JSON.stringify(users))
-      } else {
-        localStorage.setItem("users", JSON.stringify([user]))
-      }
-      navigate("/login");
+      axios.post(baseURL, user).then((response) => {
+        //setProducts(response.data.data);
+        console.log("Response: ", response)
+        if(response.data.code === 200) {
+          navigate("/login");
+        }
+      });
+      // if(JSON.parse(localStorage.getItem("users")) != null) {
+      //   let users = JSON.parse(localStorage.getItem("users"))
+      //   users.push(user);
+      //   localStorage.setItem("users", JSON.stringify(users))
+      // } else {
+      //   localStorage.setItem("users", JSON.stringify([user]))
+      // }
     }
   });
 

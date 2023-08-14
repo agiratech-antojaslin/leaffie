@@ -4,6 +4,7 @@
     border-radius: 10px;
     padding: 5px;
     border: 1px solid rgb(204, 199, 199);
+    cursor: pointer;
 }
 .leaffie-cart .leaffie-cart--table table .product .product-details {
     margin-left: 20px;
