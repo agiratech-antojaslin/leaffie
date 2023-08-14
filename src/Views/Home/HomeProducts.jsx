@@ -30,15 +30,17 @@ export default function HomeProducts() {
       product.quantity = 1;
       if (localStorage.getItem("myCart") != null) {
         let products = JSON.parse(localStorage.getItem("myCart"));
-        let inProduct = products.filter((cartProduct) => {
-          return product.id === cartProduct.id;
+        let inProduct = products.some((cartProduct) => {
+          return product._id === cartProduct._id;
         });
-        if (inProduct.length > 0) {
+        console.log("In product: ", inProduct);
+        if (inProduct) {
           products.forEach((cartProduct) => {
-            if (product.id === cartProduct.id) {
-              cartProduct.qty++;
+            if (product._id === cartProduct._id) {
+              cartProduct.quantity++;
             }
           });
+          console.log("Products: ", products);
           localStorage.setItem("myCart", JSON.stringify(products));
           dispatch(ActionCreators.addCart(products, product.quantity, product.price * product.quantity));
         } else {
